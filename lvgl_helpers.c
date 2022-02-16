@@ -22,13 +22,16 @@
 #else
 #include "lvgl/lvgl.h"
 #endif
+#if defined CONFIG_LV_TFT_DISPLAY_PROTOCOL_SPI
+#define SPI_HOST_MAX (SPI3_HOST + 1)
+#endif
 
 /*********************
  *      DEFINES
  *********************/
 
  #define TAG "lvgl_helpers"
-
+ 
 /**********************
  *      TYPEDEFS
  **********************/

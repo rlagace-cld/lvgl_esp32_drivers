@@ -29,6 +29,8 @@ void *disp_driver_init(void)
     sh1107_init();
 #elif defined CONFIG_LV_TFT_DISPLAY_CONTROLLER_SSD1306
     ssd1306_init();
+#elif defined CONFIG_LV_TFT_DISPLAY_CONTROLLER_SSD1322
+    ssd1322_init();
 #elif defined CONFIG_LV_TFT_DISPLAY_CONTROLLER_FT81X
     FT81x_init();
 #elif defined CONFIG_LV_TFT_DISPLAY_CONTROLLER_IL3820
@@ -75,6 +77,7 @@ void *disp_driver_init(void)
 
 void disp_driver_flush(lv_disp_drv_t * drv, const lv_area_t * area, lv_color_t * color_map)
 {
+//    printf("disp_driver_flush x1=%d x2=%d y1=%d y2=%d color_map=%p\n", area->x1, area->x2, area->y1, area->y2, color_map);
 #if defined CONFIG_LV_TFT_DISPLAY_CONTROLLER_ILI9341
     ili9341_flush(drv, area, color_map);
 #elif defined CONFIG_LV_TFT_DISPLAY_CONTROLLER_ILI9481
@@ -95,6 +98,8 @@ void disp_driver_flush(lv_disp_drv_t * drv, const lv_area_t * area, lv_color_t *
 	sh1107_flush(drv, area, color_map);
 #elif defined CONFIG_LV_TFT_DISPLAY_CONTROLLER_SSD1306
     ssd1306_flush(drv, area, color_map);
+#elif defined CONFIG_LV_TFT_DISPLAY_CONTROLLER_SSD1322
+    ssd1322_flush(drv, area, color_map);
 #elif defined CONFIG_LV_TFT_DISPLAY_CONTROLLER_FT81X
     FT81x_flush(drv, area, color_map);
 #elif defined CONFIG_LV_TFT_DISPLAY_CONTROLLER_IL3820
@@ -118,6 +123,8 @@ void disp_driver_rounder(lv_disp_drv_t * disp_drv, lv_area_t * area)
 {
 #if defined CONFIG_LV_TFT_DISPLAY_CONTROLLER_SSD1306
     ssd1306_rounder(disp_drv, area);
+#elif defined CONFIG_LV_TFT_DISPLAY_CONTROLLER_SSD1322
+    ssd1322_rounder(disp_drv, area);
 #elif defined CONFIG_LV_TFT_DISPLAY_CONTROLLER_SH1107
     sh1107_rounder(disp_drv, area);
 #elif defined CONFIG_LV_TFT_DISPLAY_CONTROLLER_IL3820
@@ -136,6 +143,8 @@ void disp_driver_set_px(lv_disp_drv_t * disp_drv, uint8_t * buf, lv_coord_t buf_
 {
 #if defined CONFIG_LV_TFT_DISPLAY_CONTROLLER_SSD1306
     ssd1306_set_px_cb(disp_drv, buf, buf_w, x, y, color, opa);
+#elif defined CONFIG_LV_TFT_DISPLAY_CONTROLLER_SSD1322
+    ssd1322_set_px_cb(disp_drv, buf, buf_w, x, y, color, opa);
 #elif defined CONFIG_LV_TFT_DISPLAY_CONTROLLER_SH1107
     sh1107_set_px_cb(disp_drv, buf, buf_w, x, y, color, opa);
 #elif defined CONFIG_LV_TFT_DISPLAY_CONTROLLER_IL3820

@@ -38,6 +38,8 @@ extern "C" {
 #include "sh1107.h"
 #elif defined CONFIG_LV_TFT_DISPLAY_CONTROLLER_SSD1306
 #include "ssd1306.h"
+#elif defined CONFIG_LV_TFT_DISPLAY_CONTROLLER_SSD1322
+#include "ssd1322.h"
 #elif defined CONFIG_LV_TFT_DISPLAY_CONTROLLER_FT81X
 #include "FT81x.h"
 #elif defined CONFIG_LV_TFT_DISPLAY_CONTROLLER_IL3820

@@ -139,6 +139,11 @@ menu "LVGL TFT Display controller"
         help
             SSD1306 display controller.
 
+    config LV_TFT_DISPLAY_CONTROLLER_SSD1322
+        bool
+        help
+            SSD1322 display controller.
+
     config LV_TFT_DISPLAY_CONTROLLER_FT81X
         bool
         help
@@ -316,6 +321,11 @@ menu "LVGL TFT Display controller"
             bool "SSD1306"
             select LV_TFT_DISPLAY_CONTROLLER_SSD1306
             select LV_I2C_DISPLAY
+            select LV_TFT_DISPLAY_MONOCHROME
+        config LV_TFT_DISPLAY_USER_CONTROLLER_SSD1322
+            bool "SSD1322"
+            select LV_TFT_DISPLAY_CONTROLLER_SSD1322
+            select LV_TFT_DISPLAY_PROTOCOL_SPI
             select LV_TFT_DISPLAY_MONOCHROME
         config LV_TFT_DISPLAY_USER_CONTROLLER_FT81X
             bool "FT81X"
