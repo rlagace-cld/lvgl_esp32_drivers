@@ -282,7 +282,7 @@ void ssd1322_set_px_cb(lv_disp_drv_t * disp_drv, uint8_t * buf, lv_coord_t buf_w
 
 void ssd1322_flush(lv_disp_drv_t * drv, const lv_area_t * area, lv_color_t * color_map)
 {
-    ESP_LOGI(TAG, "flush area.x1=%d area.x2=%d area.y1=%d area.y2=%d color_map=%p", area->x1, area->x2, area->y1, area->y2, color_map);
+    ESP_LOGD(TAG, "flush area.x1=%d area.x2=%d area.y1=%d area.y2=%d color_map=%p", area->x1, area->x2, area->y1, area->y2, color_map);
     uint8_t columns[2];
     uint8_t rows[2];
     uint32_t size = 0;
@@ -307,7 +307,7 @@ void ssd1322_flush(lv_disp_drv_t * drv, const lv_area_t * area, lv_color_t * col
     ssd1322_send_data(columns, 2);
     ssd1322_send_cmd(SSD1322_CMD_SET_ROW_ADDRESS);
     ssd1322_send_data(rows, 2);
-    ESP_LOGI(TAG, "columns[0]=%u columns[1]=%u rows[0]=%u rows[1]=%u color_map=%p size=%u", columns[0], columns[1], rows[0], rows[1], color_map, size);
+    ESP_LOGD(TAG, "columns[0]=%u columns[1]=%u rows[0]=%u rows[1]=%u color_map=%p size=%u", columns[0], columns[1], rows[0], rows[1], color_map, size);
     ssd1322_send_cmd(SSD1322_CMD_WRITE_RAM);
     for(int i = rows[0]; i < (rows[1] + 1); i++)
     {
@@ -334,11 +334,11 @@ void ssd1322_flush(lv_disp_drv_t * drv, const lv_area_t * area, lv_color_t * col
 void ssd1322_rounder(lv_disp_drv_t * disp_drv, lv_area_t *area)
 {
     ESP_LOGD(TAG, "rounder before area.x1=%d area.x2=%d area.y1=%d area.y2=%d", area->x1, area->x2, area->y1, area->y2);
-    area->x1 = (area->x1 & (~1));
-    area->x2 = (area->x2 & (~1)) + 1;
-/*    area->x1 = area->y1 = 0;
-    area->x2 = disp_drv->hor_res;
-    area->y1 = disp_drv->ver_res;*/
+/*    area->x1 = (area->x1 & (~1));
+    area->x2 = (area->x2 & (~1)) + 1;*/
+    area->x1 = area->y1 = 0;
+    area->x2 = disp_drv->hor_res - 1;
+    area->y2 = disp_drv->ver_res - 1;
     ESP_LOGD(TAG, "rounder after  area.x1=%d area.x2=%d area.y1=%d area.y2=%d", area->x1, area->x2, area->y1, area->y2);
 }
 
