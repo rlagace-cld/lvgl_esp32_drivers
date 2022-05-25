@@ -219,7 +219,7 @@ void ssd1322_init(void)
             SSD1322_B2
         }, 2},
         {SSD1322_CMD_SET_CONTRAST_CURRENT, {0xdf}, 1},
-        {SSD1322_CMD_MASTER_CONTRAST_CURRENT_CONTROL, {0x0f}, 1},
+        {SSD1322_CMD_MASTER_CONTRAST_CURRENT_CONTROL, {0x06}, 1},
         {SSD1322_CMD_SET_MUX_RATIO, {0x3f}, 1},
         {SSD1322_CMD_DISPLAY_ON, {0}, 0},
         {0, {0}, 0xff},
@@ -352,6 +352,13 @@ void ssd1322_sleep_out()
 {
     ESP_LOGI(TAG, "sleep_out");
     ssd1322_send_cmd(SSD1322_CMD_DISPLAY_ON);
+}
+
+void ssd1322_contrast(uint8_t value)
+{
+    ESP_LOGI(TAG, "contrast=%d", value);
+    ssd1322_send_cmd(SSD1322_CMD_MASTER_CONTRAST_CURRENT_CONTROL);
+    ssd1322_send_data(&value, 1);
 }
 
 /**********************

@@ -47,6 +47,7 @@ void ssd1322_set_px_cb(lv_disp_drv_t * disp_drv, uint8_t * buf, lv_coord_t buf_w
     lv_color_t color, lv_opa_t opa);
 void ssd1322_sleep_in(void);
 void ssd1322_sleep_out(void);
+void ssd1322_contrast(uint8_t value);
 
 /**********************
  *      MACROS
